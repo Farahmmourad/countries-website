@@ -1,0 +1,28 @@
+<h2>Countries</h2>
+<div class="list">
+
+    <ul class="filter-region">
+        <li 
+            *ngFor="let countr of getDistinctRegion()"
+            class="list-region">
+            {{ countr}}
+        </li>
+      </ul>
+
+      <ul class="filter-region">
+        <li 
+            *ngFor="let countr of filterByRegion('')"
+            class="list-region">
+            {{ countr.name.common}} {{countr.region}}
+        </li>
+      </ul>  
+
+    <ul class="list-group">
+        <li 
+            *ngFor="let countr of country"
+            class="list-group-item">
+            {{ countr.name.common}}
+        </li>
+      </ul>
+</div>
+<a [routerLink] = "'../detail-country'" >country</a>

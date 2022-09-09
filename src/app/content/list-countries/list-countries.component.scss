@@ -1,0 +1,17 @@
+.list-group{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 0;
+}
+
+.list-group-item {
+    font-size: 1.3em;
+    background-color: rgb(117, 143, 143);
+    width: 30%;
+    height: 100px;
+    margin: 10px 0;
+    list-style: none;
+    border-radius: 20px;
+    text-align: center ;
+}

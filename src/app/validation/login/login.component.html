@@ -1,0 +1,15 @@
+<div id="login">
+    <h2>Login</h2>
+    <p class="userinfo">UserName</p>
+    <input type="text" class="intext" [formControl]="name">
+    <p class="userinfo">Password</p>
+    <input type="password" class="intext">
+    <div id="user-type">
+    <input type="radio" class="inradio" name="user-choice" checked>
+    <p class="oppradio">User</p>
+    <input type="radio" class="inradio" name="user-choice">
+    <p class="oppradio">Admin</p></div>
+    <button [routerLink] = "'../content'" class="login-button">Login</button>
+    <p class="statement">Don't have an account? <a [routerLink] = "'../register'">SignUp</a></p>
+    <p>{{name.status}}</p>
+</div>
