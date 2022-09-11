@@ -1,28 +1,23 @@
+<div class="page">
+  <a [routerLink] = "'../detail-country'" >country {{inputValue}}</a>
 <h2>Countries</h2>
-<div class="list">
-
-    <ul class="filter-region">
-        <li 
-            *ngFor="let countr of getDistinctRegion()"
-            class="list-region">
-            {{ countr}}
-        </li>
-      </ul>
-
-      <ul class="filter-region">
-        <li 
-            *ngFor="let countr of filterByRegion('')"
-            class="list-region">
-            {{ countr.name.common}} {{countr.region}}
-        </li>
-      </ul>  
+<app-search (inputEvent)="receiveInput($event)" ></app-search>
+<div class="list">  
+        <mat-select class="region" [(value)]="selectedRegion">
+          <mat-option value="" default>None</mat-option>
+          <mat-option *ngFor="let region of getDistinctRegion()"
+          class="list-region" value="{{region}}">{{region}}</mat-option>
+        </mat-select>
+      
 
     <ul class="list-group">
         <li 
-            *ngFor="let countr of country"
+            *ngFor="let countr of filterByRegion()"
             class="list-group-item">
-            {{ countr.name.common}}
+            <img src="{{countr.flags.png}}">
+            <p>{{ countr.name.common}}</p>
         </li>
       </ul>
 </div>
-<a [routerLink] = "'../detail-country'" >country</a>
+
+</div>

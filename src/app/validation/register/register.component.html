@@ -1,18 +1,22 @@
-<div>
-    <h2>Login</h2>
-    <p>First Name</p>
-    <input type="text">
-    <p>Last Name</p>
-    <input type="text">
-    <p>E-mail</p>
-    <input type="text">
-    <p>Password</p>
-    <input type="text">
-    <p>Re-Password</p>
-    <input type="text">
-    <input type="radio">
-    <p>User</p>
-    <input type="radio">
-    <p>Admin</p>
-    <button>SignUp</button>
+<div class="auth">
+    <h2>SignUp</h2>
+    <form [formGroup]="groupSignup">
+        <p class="userinfo">First Name</p>
+        <input type="text" class="intext" formControlName="Firstname">
+        <p class="userinfo">Last Name</p>
+        <input type="text" class="intext" formControlName="Lastname">
+        <p class="userinfo">E-mail</p>
+        <input type="text" class="intext" formControlName="Email">
+        <p class="userinfo">Password</p>
+        <input type="text" class="intext" formControlName="Password">
+        <p class="userinfo">Re-Password</p>
+        <input type="text" class="intext">
+
+         <div id="user-type">
+        <input type="radio" class="inradio" name="user-choice" checked>
+        <p class="oppradio">User</p>
+        <input type="radio" class="inradio" name="user-choice">
+        <p class="oppradio">Admin</p></div>
+    </form>
+    <button (click)="signUp()" class="login-button">SignUp</button>
 </div>

@@ -5,6 +5,9 @@ import { DetailCountryComponent } from './detail-country/detail-country.componen
 import { ContentRoutingModule } from './content-routing.module';
 import { ContentPageComponent } from './content-page/content-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSelectModule } from '@angular/material/select';
+import { SearchComponent } from './search/search.component';
+
 
 
 
@@ -12,12 +15,15 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     ListCountriesComponent,
     DetailCountryComponent,
-    ContentPageComponent
+    ContentPageComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
     ContentRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSelectModule,
+   
   ]
 })
 export class ContentModule { }

@@ -124,7 +124,10 @@ export interface Country{
     landlocked : boolean;
     area : number;
     flag : String;
-    flags : [];
+    flags : {
+        svg : String;
+        png: String
+    };
     demonyms : {
         eng: {
             f :String;

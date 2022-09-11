@@ -13,7 +13,7 @@ children: [
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ]
 },
-{path : 'content' , loadChildren: () => import('../content/content.module').then(m => m.ContentModule)},
+
 
 ];
 

@@ -11,7 +11,9 @@ import { Country } from '../Country';
 })
 export class ListCountriesComponent implements OnInit {
   country: Country[] = [];
-  
+  selectedRegion : String= '';
+  inputValue : string = '';
+  newCountry : Country[] = [];
 
   constructor(private service: CountriesService) { }
 
@@ -20,16 +22,44 @@ export class ListCountriesComponent implements OnInit {
         .subscribe(response => {
           this.country = response;
         });
+        
+  }
+
+  receiveInput ($event : any){
+    this.inputValue = $event;
   }
 
   getDistinctRegion(): String[]{
     const unique = [...new Set(this.country.map(item => item.region))];
-    // this.service.getCountries().pipe(mergeMap(d => d.region),distinct(({ count }) => count.region)).subscribe() 
+     
     return  unique;
   }
-  
-  filterByRegion(r:String) : Country[]{
-    return this.country.filter(n => { return n.region === r})
+
+  filterByName(): Country[]{
+    if(this.selectedRegion != '')
+    return this.country.filter(n => { return n.name.common === this.inputValue})
+
+    return this.country;
+
   }
+  
+  filterByRegion() : Country[]{
+    this.newCountry = this.country;
+    if(this.selectedRegion != '')
+     this.newCountry=this.country.filter(n => { return n.region === this.selectedRegion})
+
+     if(this.inputValue != ''){
+
+      this.newCountry=this.newCountry.filter(n => { 
+        if (n.name.common.includes(this.inputValue)) 
+        return n.name.common;
+      return null;
+    })
+     }
+
+    return this.newCountry;
+
+  }
+ 
 
 }

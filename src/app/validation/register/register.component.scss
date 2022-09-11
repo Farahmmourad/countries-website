@@ -1,0 +1,51 @@
+.auth{
+    font-size: 1.5em;
+    width: 350px;
+    color: #353B3C;
+    
+    h2 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 1.5em; 
+    }
+
+    .userinfo{
+        
+        margin: 15px 0px;
+
+    }
+
+    .intext{
+        width: 100%;
+        height: 30px;
+        border-radius: 10px;
+        border-width: 0;
+        margin-bottom: 17px;
+    }
+    .inradio { 
+        width: 5%;
+    }
+
+    .oppradio {
+        
+        width: 20%;
+    }
+    #user-type {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+
+    .login-button{
+        display: block;
+        font-size: 1em;
+        width: 250px;
+        height: 50px;
+        border-radius: 15px;
+        border-width: 0;
+        color: white;
+        background-color: #845353 ;
+        margin: 10px auto;
+    }
+
+}

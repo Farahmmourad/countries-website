@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Country } from './Country';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +15,6 @@ export class CountriesService {
 
   getCountries(): Observable<Country[]>{
     return this.httpClient.get<Country[]>(this.url);
-      
   }
 
 
