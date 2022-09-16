@@ -20,15 +20,24 @@ export class RegisterComponent implements OnInit {
   }
   );
 
+
+
   constructor(private authService : AuthService) { }
 
   ngOnInit(): void {
   }
 
   signUp() : void{
+    if (this.groupSignup.value.RoleName === 'Admin'){
+      this.authService.createAdmin(this.groupSignup.value).subscribe(
+        () => { console.log(this.groupSignup.value)}
+      );
+    }
+    else {
     this.authService.signUp(this.groupSignup.value).subscribe(
       () => { console.log(this.groupSignup.value)}
     );
+    }
   }
 
 }
