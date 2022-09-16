@@ -13,9 +13,9 @@
         <input type="text" class="intext">
 
          <div id="user-type">
-        <input type="radio" class="inradio" name="user-choice" checked>
+        <input type="radio" class="inradio" value= "User"  formControlName="RoleName" checked>
         <p class="oppradio">User</p>
-        <input type="radio" class="inradio" name="user-choice">
+        <input type="radio" class="inradio" value="Admin" formControlName="RoleName" >
         <p class="oppradio">Admin</p></div>
     </form>
     <button (click)="signUp()" class="login-button">SignUp</button>

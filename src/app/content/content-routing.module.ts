@@ -9,9 +9,10 @@ import { ListCountriesComponent } from './list-countries/list-countries.componen
 const routes: Routes = [ {path : '' , component : ContentPageComponent, 
 children: [
   {path : 'countries' , component : ListCountriesComponent}, 
-  {path : 'detail-country' , component : DetailCountryComponent},
-  { path: '', redirectTo: 'countries', pathMatch: 'full' }
-] } ];
+  {path : 'detail-country/:name' , component : DetailCountryComponent},
+  { path: '**', redirectTo: 'countries', pathMatch: 'full' },
+] },
+{path: '**', redirectTo: ''} ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

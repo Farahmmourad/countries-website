@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserInfo } from './UserInfo';
 import { UserAuth } from './UserAuth';
+import { LoginToken } from './LoginToken';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +16,8 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) { }
 
-  login(Auth : UserAuth) : Observable<any> {
-    return this.httpClient.post(this.userUrl+"/Login()", Auth);
+  login(Auth : UserAuth) : Observable<LoginToken> {
+    return this.httpClient.post<LoginToken>(this.userUrl+"/Login()", Auth);
   }
 
   logout() : Observable<any> {
@@ -23,6 +25,10 @@ export class AuthService {
   };
   signUp(credentials: UserInfo) : Observable<any> {
     return this.httpClient.post(this.userUrl+"/SignUp()", credentials);
+  }
+
+  decodeToken(encodedString : string) : string {
+    return atob(encodedString);
   }
 
 }

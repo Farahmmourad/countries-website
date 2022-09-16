@@ -15,8 +15,8 @@ export class RegisterComponent implements OnInit {
     Firstname : new FormControl('', Validators.required),
     Lastname : new FormControl('', Validators.required),
     Email : new FormControl('', Validators.email),
-    Password : new FormControl(''),
-    RoleName :  new FormControl(''),
+    Password : new FormControl('', Validators.required),
+    RoleName :  new FormControl('',Validators.required),
   }
   );
 
@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
 
   signUp() : void{
     this.authService.signUp(this.groupSignup.value).subscribe(
-      () => { console.log('done')}
+      () => { console.log(this.groupSignup.value)}
     );
   }
 

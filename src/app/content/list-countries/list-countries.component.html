@@ -1,5 +1,4 @@
 <div class="page">
-  <a [routerLink] = "'../detail-country'" >country {{inputValue}}</a>
 <h2>Countries</h2>
 <app-search (inputEvent)="receiveInput($event)" ></app-search>
 <div class="list">  
@@ -14,8 +13,10 @@
         <li 
             *ngFor="let countr of filterByRegion()"
             class="list-group-item">
+            <a [routerLink]="['/content/detail-country', countr.name.common]" [state]="countr">
             <img src="{{countr.flags.png}}">
             <p>{{ countr.name.common}}</p>
+            </a>
         </li>
       </ul>
 </div>

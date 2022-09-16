@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Country } from '../Country';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-detail-country',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailCountryComponent implements OnInit {
 
-  constructor() { }
+  name: String = '';
+  private sub: any;
+  private sub1: any;
+  countryn : any;
+
+  constructor(private route : ActivatedRoute, private location:Location) { }
 
   ngOnInit(): void {
+    this.sub = this.route.params.subscribe(params => {
+      this.name = params['name']; 
+   });
+   console.log(this.location.getState());
+   this.countryn = this.location.getState();
   }
 
 }

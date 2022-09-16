@@ -19,8 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   exports: [
-    ValidationPageComponent,
-    LoginComponent,
+
     ReactiveFormsModule
   ],
   
