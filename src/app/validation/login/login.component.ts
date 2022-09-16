@@ -13,8 +13,8 @@ import { LoginToken } from '../LoginToken';
 })
 export class LoginComponent implements OnInit {
   groupSignup = new FormGroup({
-    Username : new FormControl(''),
-    Password : new FormControl(''),
+    Username : new FormControl('', Validators.required),
+    Password : new FormControl('', Validators.required),
   }
   );
   parts :string[] = [];
