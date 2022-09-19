@@ -1,7 +1,18 @@
 <div class="page">
 <h2>Countries</h2>
 <app-search (inputEvent)="receiveInput($event)" ></app-search>
-<div class="list">  
+<div >
+<ul class="list-group" >
+  <li 
+      *ngFor="let countr of country$ | async"
+      class="list-group-item">
+      <a [routerLink]="['/content/detail-country', countr.name.common]">
+      <img src="{{countr.flags.png}}">
+      <p>{{ countr.name.common}}</p>
+      </a>
+  </li>
+</ul></div>
+<!-- <div class="list">  
         <mat-select class="region" [(value)]="selectedRegion">
           <mat-option value="" default>None</mat-option>
           <mat-option *ngFor="let region of getDistinctRegion()"
@@ -19,6 +30,6 @@
             </a>
         </li>
       </ul>
-</div>
+</div> -->
 
 </div>

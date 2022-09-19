@@ -7,6 +7,10 @@ import { ContentPageComponent } from './content-page/content-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
 import { SearchComponent } from './search/search.component';
+import { EffectsModule } from '@ngrx/effects';
+import { ContentEffects } from '../state/content/content.effects';
+import { StoreModule } from '@ngrx/store';
+import { countriesReducer } from '../state/content/content.reducer';
 
 
 
@@ -23,6 +27,8 @@ import { SearchComponent } from './search/search.component';
     ContentRoutingModule,
     HttpClientModule,
     MatSelectModule,
+    StoreModule.forRoot({ Country : countriesReducer}),
+    EffectsModule.forRoot([ContentEffects])
    
   ]
 })

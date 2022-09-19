@@ -11,36 +11,34 @@ import { CountriesService } from '../countries.service';
 })
 export class DetailCountryComponent implements OnInit {
 
-  name: String = '';
+  name: string = '';
   private sub: any;
   private sub1: any;
-  countryn? : Country;
+  countryn! : Country;
   country :Country[] = [];
 
-  constructor(private route : ActivatedRoute, private location:Location,private countriesservice : CountriesService) { }
+  constructor(private route : ActivatedRoute,private countriesservice : CountriesService) { }
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
       this.name = params['name']; 
    });
 
-   this.countriesservice.getCountries()
+    this.countriesservice.getCountryByName(this.name)
    .subscribe(response => {
-     this.country = response;
+     this.countryn = response;
+     console.log(this.countryn);
+     this.getCountry();
    });
 
-   this.getCountry();
-  //  console.log(this.location.getState());
-  //  this.countryn = this.location.getState();
   }
 
   getCountry () : void{
-    for ( let i of this.country){
-      this.countryn = i;
-      if( i.name.common === this.name)
-        this.countryn= i;
-      
-    }
+    this.countriesservice.getCountriesByCodes(this.countryn.borders)
+    .subscribe(response => {
+      this.country = response;
+      console.log(response)
+    });
 
   }
 

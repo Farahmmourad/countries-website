@@ -1,1 +1,21 @@
-<p>detail-country works! {{ countryn?.name?.common!}}</p>
+
+<div *ngIf="countryn" class="country"> 
+    <div class="slider">
+        <img src={{countryn.flags.png}}>
+    </div>
+    <div class="Info">
+        <h1>{{countryn.name.common}}</h1>
+        <h1>111</h1>
+        <p><strong>Capitacl: </strong>{{countryn.capital}}</p>
+        <p><strong>Region: </strong>{{countryn.region}}</p>
+        <p><strong>Subregion: </strong>{{countryn.subregion}}</p>
+        <p >{{countryn.languages}}</p>
+        <p><strong>Area: </strong>{{countryn.area}}</p>
+    </div>
+    <div class="border-countries">
+        <ul>
+            <li *ngFor="let border of country"><a [routerLink]="['/content/detail-country', border.name.common]">{{border.name.common}}</a></li>
+        </ul>
+    </div>
+
+</div>    

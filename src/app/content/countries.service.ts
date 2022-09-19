@@ -9,13 +9,24 @@ import { Country } from './Country';
   providedIn: 'root'
 })
 export class CountriesService {
-  private url = "https://restcountries.com/v3.1/all";
+  private url = "https://restcountries.com/v3.1";
 
   constructor(private httpClient: HttpClient) { }
 
   getCountries(): Observable<Country[]>{
-    return this.httpClient.get<Country[]>(this.url);
+    return this.httpClient.get<Country[]>(this.url+"/all");
   }
 
+  getCountryByName(name: string): Observable<Country> {
+    return this.httpClient
+      .get<Country[]>(this.url+"/name/"+name)
+      .pipe(map(([res]) => res));
+  }
+
+  getCountriesByCodes(codes: string[]): Observable<Country[]> {
+    return this.httpClient.get<Country[]>(
+      this.url+"/alpha?codes="+codes.join(',')
+    );
+  }
 
 }
