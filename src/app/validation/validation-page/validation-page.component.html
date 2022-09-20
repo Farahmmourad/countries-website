@@ -1,3 +1,28 @@
-<div id="container">
-<router-outlet></router-outlet>
+<div *ngIf="getRoute() === '/validation/login'" class="container">
+    <div class="info-place">
+        
+        <router-outlet></router-outlet>
+    </div>
+    <div  class="navigate">
+    <div>
+        <p>Don't have an account?</p>
+        
+        <button class="login-button" [routerLink] = "'/validation/register'">SignUp</button>
+    </div>
+    </div>
+</div>
+
+<div *ngIf="getRoute() === '/validation/register'" class="container">
+    <div class="navigate">
+        <div>
+        <p>Already have an account?</p>
+        
+        <button class="login-button" [routerLink] = "'/validation/login'">Login</button>
+    </div>
+    </div>
+    <div  class="info-place">
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+    </div>
 </div>

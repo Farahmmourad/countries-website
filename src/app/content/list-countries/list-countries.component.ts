@@ -19,7 +19,7 @@ export class ListCountriesComponent implements OnInit {
   newCountry : Country[] = [];
   unique : string[] = [];
 
-  constructor(private service: CountriesService, private store : Store<AppState>) { }
+  constructor( private store : Store<AppState>) { }
 
   ngOnInit(): void {
     this.store.dispatch(loadCountries());
