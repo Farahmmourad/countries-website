@@ -5,6 +5,7 @@ import { UserInfo } from './UserInfo';
 import { UserAuth } from './UserAuth';
 import { LoginToken } from './LoginToken';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -18,7 +19,7 @@ export class AuthService {
   jwtHelper = new JwtHelperService();
 
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   login(Auth : UserAuth) : Observable<LoginToken> {
     return this.httpClient.post<LoginToken>(this.userUrl+"/Login()", Auth);
@@ -35,8 +36,31 @@ export class AuthService {
     return this.httpClient.post(this.userUrl+"/CreateAdminUser()", credentials);
   }
 
-  decodeToken(encodedString : string) : string {
-    return atob(encodedString);
+  isLoggedIn(){
+    return localStorage.getItem('token')!=null;
+  }
+
+  getToken(){
+    return localStorage.getItem('token') || '';
+  }
+
+  getRefreshToken(){
+    return localStorage.getItem('refreshtoken') || '';
+  }
+
+  decodeToken() {
+    var logintoken = this.getToken();
+    var extractedtoken = logintoken.split('.')[1];
+    var atobtoken = atob(extractedtoken);
+    var finaldata = JSON.parse(atobtoken);
+    console.log(finaldata.realm_access.roles[2]);
+    var role =finaldata.realm_access.roles[2];
+    if (role === 'Admin'){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 
   getAuthStatus () : boolean {
@@ -45,6 +69,20 @@ export class AuthService {
     } else {
       return true;
     }
+  }
+
+  refreshToken() {
+    return this.httpClient.post(this.userUrl + '/RefreshToken()', this.getRefreshToken());
+  }
+
+  saveToken(token : string){
+    localStorage.removeItem('token');
+    localStorage.setItem('token', token)
+  }
+
+  onlogout(){
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 
 }

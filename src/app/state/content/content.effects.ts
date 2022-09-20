@@ -7,9 +7,8 @@ import {
 } from './content.actions';
 import { CountriesService } from 'src/app/content/countries.service';
 import { of, from } from 'rxjs';
-import { mergeMap, map, catchError, withLatestFrom } from 'rxjs/operators';
+import { switchMap, map, catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { allCountries } from './content.selectors';
 import { AppState } from '../app.state';
 
 @Injectable()
@@ -24,11 +23,11 @@ export class ContentEffects {
   loadCountries$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadCountries),
-      mergeMap(() =>
+      switchMap(() =>
         
-        this.countriesService.getCountries().pipe(
+        from(this.countriesService.getCountries()).pipe(
           
-          map(countries =>  
+          map((countries) =>  
              loadCountriesSuccess({ countries : countries })),
           
           catchError((error) => of(loadCountriesFailure({ error })))

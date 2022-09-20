@@ -27,8 +27,7 @@ import { countriesReducer } from '../state/content/content.reducer';
     ContentRoutingModule,
     HttpClientModule,
     MatSelectModule,
-    StoreModule.forRoot({ Country : countriesReducer}),
-    EffectsModule.forRoot([ContentEffects])
+    
    
   ]
 })

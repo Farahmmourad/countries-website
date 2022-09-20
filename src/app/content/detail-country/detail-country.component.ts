@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Country } from '../Country';
 import { Location } from '@angular/common';
 import { CountriesService } from '../countries.service';
@@ -20,16 +20,17 @@ export class DetailCountryComponent implements OnInit {
   constructor(private route : ActivatedRoute,private countriesservice : CountriesService) { }
 
   ngOnInit(): void {
-    this.sub = this.route.params.subscribe(params => {
-      this.name = params['name']; 
+    this.sub = this.route.paramMap.subscribe((params:ParamMap) => {
+      this.name = params.get('name')!; 
+      this.countriesservice.getCountryByName(this.name)
+      .subscribe(response => {
+        this.countryn = response;
+        console.log(this.countryn);
+        this.getCountry();
+      });
    });
 
-    this.countriesservice.getCountryByName(this.name)
-   .subscribe(response => {
-     this.countryn = response;
-     console.log(this.countryn);
-     this.getCountry();
-   });
+ 
 
   }
 

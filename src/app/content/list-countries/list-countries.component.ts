@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
-import {  loadCountries } from 'src/app/state/content/content.actions';
-import { allCountries } from 'src/app/state/content/content.selectors';
+import {  loadCountries, filterByRegion, filterByName } from 'src/app/state/content/content.actions';
+import { allCountries, allFiltered } from 'src/app/state/content/content.selectors';
 import { CountriesService } from '../countries.service';
 import { Country } from '../Country';
 
@@ -12,54 +12,60 @@ import { Country } from '../Country';
   styleUrls: ['./list-countries.component.scss']
 })
 export class ListCountriesComponent implements OnInit {
-  public country$ =this.store.select(state => state.countries);
-  selectedRegion : String= '';
+  country$ =this.store.select(allCountries);
+  country : Country[] = [];
+  selectedRegion : string= '';
   inputValue : string = '';
   newCountry : Country[] = [];
+  unique : string[] = [];
 
-  constructor(private service: CountriesService, private store : Store<{countries : Country[]}>) { }
+  constructor(private service: CountriesService, private store : Store<AppState>) { }
 
   ngOnInit(): void {
     this.store.dispatch(loadCountries());
     
-    console.log(this.country$)
+    this.country$.subscribe(
+      data => {
+        this.country=data;
+        this.getDistinctRegion();
+        console.log(data)
+      }
+    )
   }
 
   receiveInput ($event : any){
     this.inputValue = $event;
+    this.filterByName();
   }
 
-  // getDistinctRegion(): String[]{
-  //   const unique = [...new Set(this.country$.map(item => item.region))];
+  getDistinctRegion(): void{
+    this.unique = [...new Set(this.country.map(item => item.region))];
      
-  //   return  unique;
-  // }
+    
+  }
 
-  // filterByName(): Country[]{
-  //   if(this.selectedRegion != '')
-  //   return this.country.filter(n => { return n.name.common === this.inputValue})
+  filterByName(): void{
+    if(this.inputValue != ''){
+      this.store.dispatch(filterByName({name: this.inputValue}));
+      this.country$ = this.store.select(allFiltered);
+     }
+     else {
+      this.country$ = this.store.select(allCountries)
+     }
 
-  //   return this.country;
-
-  // }
+  }
   
-  // filterByRegion() : Country[]{
-  //   this.newCountry = this.country;
-  //   if(this.selectedRegion != '')
-  //    this.newCountry=this.country.filter(n => { return n.region === this.selectedRegion})
+  filterByRegion() : void{
+    
+    if(this.selectedRegion != ''){
+    this.store.dispatch(filterByRegion({region: this.selectedRegion}));
+    this.country$ = this.store.select(allFiltered)
+    }
+    else {
+      this.country$ = this.store.select(allCountries)
+    }
 
-  //    if(this.inputValue != ''){
-
-  //     this.newCountry=this.newCountry.filter(n => { 
-  //       if (n.name.common.includes(this.inputValue)) 
-  //       return n.name.common;
-  //     return null;
-  //   })
-  //    }
-
-  //   return this.newCountry;
-
-  // }
+  }
  
 
 }

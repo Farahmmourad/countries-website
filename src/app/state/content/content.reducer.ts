@@ -1,16 +1,17 @@
 import { createReducer, on } from "@ngrx/store";
-import { loadCountries, loadCountriesFailure, loadCountriesSuccess } from './content.actions';
+import { filterByName, filterByRegion, loadCountries, loadCountriesFailure, loadCountriesSuccess } from './content.actions';
 import { Country } from '../../content/Country';
-import { CountriesService } from "src/app/content/countries.service";
 
 export interface CountryState{
     countries : Country[];
+    filteredCountries : Country[];
     error : string;
     status : 'pending' | 'loading' | 'error' |'success';
 }
 
 export const intialState : CountryState = {
     countries : [],
+    filteredCountries : [],
     error : '',
     status : 'pending'
 };
@@ -21,6 +22,7 @@ export const countriesReducer = createReducer(
     on(loadCountriesSuccess, (state, {countries}) => ({
         ...state,
         countries: countries,
+        filteredCountries : countries,
         error: '',
         status: 'success',
       })),
@@ -29,5 +31,22 @@ export const countriesReducer = createReducer(
         ...state,
         error: error,
         status: 'error',
-      }))
+      })),
+      on(filterByRegion, (state, {region}) =>(
+        {
+          ...state,
+          filteredCountries : state.countries.filter(n => { return n.region === region})
+        }
+      )),
+      on(filterByName, (state, {name}) =>(
+        {
+          ...state,
+          filteredCountries : state.countries.filter(n => { 
+                if (n.name.common.includes(name)) 
+                return n.name.common;
+              return null;
+            })
+        }
+      )),
+
 )

@@ -27,18 +27,23 @@ export class LoginComponent implements OnInit {
   }
 
   validate(): void{
-
-    // this.authService.login(this.groupSignup.value).subscribe(
-    //   (x: LoginToken) => {
-    //     console.log(x);
-    //     localStorage.setItem('token', x.Login.AccessToken);
-    //     this.isLoggedIn.next(true);
-    //     this.parts  = x.Login.AccessToken.split('.');
-    //     console.log(this.authService.decodeToken(this.parts[1]));
-        this.router.navigate(['../../content']);
-    // }
-    // )
-
+  //   if(this.groupSignup.valid){
+  //   this.authService.login(this.groupSignup.value).subscribe(
+  //     (x: LoginToken) => {
+  //       console.log(x);
+  //       localStorage.setItem('token', x.Login.AccessToken);
+  //       localStorage.setItem('refreshtoken', x.Login.RefreshToken);
+  //       this.authService.decodeToken();
+  //       this.router.navigate(['../../content']);
+  //       this.authService.refreshToken().subscribe(
+  //         (x) => {
+  //           console.log(x);
+  //         }
+  //       )
+  //   }
+  //   )
+   
+  // }
   }
 }
 
