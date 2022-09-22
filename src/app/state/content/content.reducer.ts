@@ -26,7 +26,7 @@ export const countriesReducer = createReducer(
         error: '',
         status: 'success',
       })),
-      // Handle todos load failure
+      
       on(loadCountriesFailure, (state,  {error}) => ({
         ...state,
         error: error,

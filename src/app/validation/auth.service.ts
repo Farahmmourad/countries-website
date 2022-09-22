@@ -25,8 +25,11 @@ export class AuthService {
     return this.httpClient.post<LoginToken>(this.userUrl+"/Login()", Auth);
   }
 
-  logout() : Observable<any> {
-    return this.httpClient.get(this.userUrl+"/Logout()");
+  logout(token : string, refreshtoken : string) : Observable<any> {
+    return this.httpClient.post(this.userUrl+"/Logout()",{
+      Token : token,
+      RefreshToken : refreshtoken
+    });
   };
   signUp(credentials: UserInfo) : Observable<any> {
     return this.httpClient.post(this.userUrl+"/SignUp()", credentials);
@@ -45,6 +48,7 @@ export class AuthService {
   }
 
   getRefreshToken(){
+    console.log(localStorage.getItem('refreshtoken'));
     return localStorage.getItem('refreshtoken') || '';
   }
 
@@ -72,12 +76,15 @@ export class AuthService {
   }
 
   refreshToken() {
-    return this.httpClient.post(this.userUrl + '/RefreshToken()', this.getRefreshToken());
+    return this.httpClient.post<LoginToken>(this.userUrl + '/RefreshToken()', 
+    {RefreshToken: this.getRefreshToken()});
   }
 
-  saveToken(token : string){
+  saveToken(token : string, refreshtoken : string){
     localStorage.removeItem('token');
+    localStorage.removeItem('refreshtoken');
     localStorage.setItem('token', token)
+    localStorage.setItem('refreshtoken', refreshtoken)
   }
 
   onlogout(){
