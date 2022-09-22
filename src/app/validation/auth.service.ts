@@ -83,7 +83,7 @@ export class AuthService {
   saveToken(token : string, refreshtoken : string){
     localStorage.removeItem('token');
     localStorage.removeItem('refreshtoken');
-    localStorage.setItem('token', token)
+    localStorage.setItem('token', token);
     localStorage.setItem('refreshtoken', refreshtoken)
   }
 

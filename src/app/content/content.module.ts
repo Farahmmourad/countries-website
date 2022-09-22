@@ -11,6 +11,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { ContentEffects } from '../state/content/content.effects';
 import { StoreModule } from '@ngrx/store';
 import { countriesReducer } from '../state/content/content.reducer';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { LogoComponent } from './logo/logo.component';
 
 
 
@@ -20,7 +22,9 @@ import { countriesReducer } from '../state/content/content.reducer';
     ListCountriesComponent,
     DetailCountryComponent,
     ContentPageComponent,
-    SearchComponent
+    SearchComponent,
+    NavBarComponent,
+    LogoComponent
   ],
   imports: [
     CommonModule,
