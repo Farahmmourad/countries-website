@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { ValidationRoutingModule } from './validation-routing.module';
 import { ValidationPageComponent } from './validation-page/validation-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TranslocoRootModule } from '../transloco-root.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ValidationRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslocoRootModule
   ],
   exports: [
 

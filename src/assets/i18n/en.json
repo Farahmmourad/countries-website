@@ -1,0 +1,13 @@
+{
+    "validation":{
+        "username" : "User Name",
+        "password" : "Password"
+    },
+
+    "capital" : "Capital",
+    "region" : "Region",
+    "subregion" : "Subregion",
+    "Area" : "Area",
+    "bordercountries" : "Border Countries"
+
+}

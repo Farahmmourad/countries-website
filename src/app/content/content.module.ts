@@ -13,6 +13,7 @@ import { StoreModule } from '@ngrx/store';
 import { countriesReducer } from '../state/content/content.reducer';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LogoComponent } from './logo/logo.component';
+import { TranslocoRootModule } from '../transloco-root.module';
 
 
 
@@ -31,7 +32,7 @@ import { LogoComponent } from './logo/logo.component';
     ContentRoutingModule,
     HttpClientModule,
     MatSelectModule,
-    
+    TranslocoRootModule
    
   ]
 })

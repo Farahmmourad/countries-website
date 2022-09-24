@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 import { AuthService } from 'src/app/validation/auth.service';
 
 @Component({
@@ -8,12 +9,22 @@ import { AuthService } from 'src/app/validation/auth.service';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private service:AuthService) { }
+  constructor(private service:AuthService,private transService: TranslocoService) { }
 
   ngOnInit(): void {
   }
 
   logout(){
     this.service.onlogout();
+  }
+
+  translate(){
+    if (this.transService.getActiveLang()==='en'){
+      console.log(this.transService.getActiveLang());
+      this.transService.setActiveLang('fr');
+    }
+    else if (this.transService.getActiveLang()==='fr'){
+      this.transService.setActiveLang('en');
+    }
   }
 }

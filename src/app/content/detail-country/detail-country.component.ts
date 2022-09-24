@@ -3,6 +3,8 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Country } from '../Country';
 import { Location } from '@angular/common';
 import { CountriesService } from '../countries.service';
+import { TranslocoService } from '@ngneat/transloco';
+import { AuthService } from 'src/app/validation/auth.service';
 
 @Component({
   selector: 'app-detail-country',
@@ -17,7 +19,7 @@ export class DetailCountryComponent implements OnInit {
   countryn! : Country;
   country :Country[] = [];
 
-  constructor(private route : ActivatedRoute,private countriesservice : CountriesService) { }
+  constructor(private route : ActivatedRoute,private countriesservice : CountriesService,private service : AuthService) { }
 
   ngOnInit(): void {
     this.sub = this.route.paramMap.subscribe((params:ParamMap) => {
@@ -42,5 +44,10 @@ export class DetailCountryComponent implements OnInit {
     });
 
   }
+
+  checkRole(){
+    return this.service.decodeToken()
+  }
+
 
 }

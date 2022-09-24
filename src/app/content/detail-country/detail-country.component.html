@@ -1,4 +1,4 @@
-
+<ng-container *transloco="let trans">
 <div *ngIf="countryn" class="country"> 
     <div class="slider">
         <img src={{countryn.flags.png}}>
@@ -7,24 +7,30 @@
     <div class="info">
         <div class="details">
             <h1>Information</h1>
-            <p><strong>Capitacl: </strong>{{countryn.capital}}</p>
-            <p><strong>Region: </strong>{{countryn.region}}</p>
-            <p><strong>Subregion: </strong>{{countryn.subregion}}</p>
-            <p >{{countryn.languages}}</p>
-            <p><strong>Area: </strong>{{countryn.area}}</p>
+            <p><strong>{{trans('capital')}}: </strong>{{countryn.capital}}</p>
+            <p><strong>{{trans('region')}}: </strong>{{countryn.region}}</p>
+            <p><strong>{{trans('subregion')}}: </strong>{{countryn.subregion}}</p>
+            <p><strong>{{trans('Area')}}: </strong>{{countryn.area}}</p>
+            <div  *ngIf="checkRole()"  class="AdminPanel">
+                <mat-select>
+                    <mat-option default>{{trans('capital')}}</mat-option>
+                    <mat-option>{{trans('region')}}</mat-option>
+                    <mat-option>{{trans('subregion')}}</mat-option>
+                    <mat-option>{{trans('Area')}}</mat-option>
+                  </mat-select>
+                <input type="text">
+            </div>
         </div>
         <div class="border-countries">
-            <h1>Border Countries</h1>
+            <h1>{{trans('bordercountries')}}</h1>
             <ul>
                 <li *ngFor="let border of country"><a [routerLink]="['/content/detail-country', border.name.common]">{{border.name.common}}</a></li>
             </ul>
         </div>
     </div>
     
+    
 
-    <!-- <div class="AdminPanel">
-        <input type="text">
-        <input type="text">
-    </div> -->
-
-</div>    
+</div> 
+   
+</ng-container>

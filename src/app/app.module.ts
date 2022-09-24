@@ -8,11 +8,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule, } from '@angular/platform-browser/animations';
-//import { AppHttpInterceptorService } from './validation/app-http-interceptor.service';
 import { StoreModule } from '@ngrx/store';
 import { countriesReducer } from './state/content/content.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ContentEffects } from './state/content/content.effects';
+import { AppHttpInterceptorService } from './validation/app-http-interceptor.service';
+
+import { TranslocoRootModule } from './transloco-root.module';
 
 
 @NgModule({
@@ -30,13 +32,14 @@ import { ContentEffects } from './state/content/content.effects';
     BrowserAnimationsModule,
     StoreModule.forRoot({ countryState : countriesReducer}),
     EffectsModule.forRoot([ContentEffects]),
+    TranslocoRootModule
   ],
   providers: [
-  //   {
-  //     provide: HTTP_INTERCEPTORS,
-  //     useClass: AppHttpInterceptorService,
-  //     multi: true
-  // }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AppHttpInterceptorService,
+      multi: true
+  }
   ],
   bootstrap: [AppComponent]
 })

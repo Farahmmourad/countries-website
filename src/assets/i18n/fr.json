@@ -1,0 +1,12 @@
+{
+    "validation":{
+        "username" : "dddd",
+        "password" : "gggg"
+    },
+
+    "capital" : "Capitale",
+    "region" : "Région",
+    "subregion" : "sous-région",
+    "Area" : "La Zone",
+    "bordercountries" : "Pays Frontaliers"
+}

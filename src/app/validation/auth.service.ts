@@ -52,7 +52,7 @@ export class AuthService {
     return localStorage.getItem('refreshtoken') || '';
   }
 
-  decodeToken() {
+  decodeToken(): boolean {
     var logintoken = this.getToken();
     var extractedtoken = logintoken.split('.')[1];
     var atobtoken = atob(extractedtoken);

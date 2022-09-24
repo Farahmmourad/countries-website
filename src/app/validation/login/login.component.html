@@ -1,11 +1,13 @@
+<ng-container *transloco=" let trans">
 <div class="auth">
     <h2>Login</h2>
     <form [formGroup]="groupSignup">
-        <p class="userinfo" >UserName</p>
+        <p class="userinfo" >{{trans('validation.username')}}</p>
         <input type="text" class="intext" formControlName="Username">
-        <p class="userinfo">Password</p>
+        <p class="userinfo">{{trans('validation.password')}}</p>
         <input type="password" class="intext" formControlName="Password">
     </form>
     <a [routerLink] = "'../../content'">sss</a>
     <button (click)="validate()" class="login-button">Login</button>
 </div>
+</ng-container>
