@@ -12,8 +12,8 @@
             <p><strong>{{trans('subregion')}}: </strong>{{countryn.subregion}}</p>
             <p><strong>{{trans('Area')}}: </strong>{{countryn.area}}</p>
             <div  *ngIf="checkRole()"  class="AdminPanel">
-                <mat-select>
-                    <mat-option default>{{trans('capital')}}</mat-option>
+                <mat-select [(value)]="selected">
+                    <mat-option value="" default>{{trans('capital')}}</mat-option>
                     <mat-option>{{trans('region')}}</mat-option>
                     <mat-option>{{trans('subregion')}}</mat-option>
                     <mat-option>{{trans('Area')}}</mat-option>

@@ -1,3 +1,6 @@
+*{
+    font-family: 'Open Sans';
+}
 .page {
     margin: 10px 30px;
 
@@ -43,23 +46,50 @@
 
         p {
             position: absolute;
+            font-size: 1.1em;
             box-sizing: border-box;
             width: 100%;
-            height: fit-content;
+            height: 100%;
             z-index: 2;
             text-align: center;
             left: 0px;
-            bottom: 0px;
-            background-color: rgba(238, 240, 242,0.5) ; 
-            padding: 15px 0;
+            top: 0px;
+            background-color: rgba(238, 240, 242,0.7) ; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            font-weight: bold;
+        }
+
+        
+
+    }
+
+    .list-group-item :hover{
+        p{
+            z-index: 0;
         }
     }
 
 }
 
-.region {
-    background-color:#002e4ea2 ;
-    padding: 10px;
-    border-radius: 10px;
+.filter{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .region {
+        background-color:#002e4ea2 ;
+        width: 20%;
+        padding: 10px;
+        border-radius: 10px;
+    }
 }
+
+app-search{
+    height: 30px;
+    width: 20%;
+}
+
+
 

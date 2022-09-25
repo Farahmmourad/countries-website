@@ -1,15 +1,17 @@
 <div class="page">
 <h2>Countries</h2>
+<div class="filter">
 <app-search (inputEvent)="receiveInput($event)" ></app-search>
 
 
- <div class="list">  
+ 
         <mat-select class="region" [(value)]="selectedRegion">
           <mat-option value="" (click)="filterByRegion()" default>None</mat-option>
           <mat-option *ngFor="let region of unique"
           class="list-region" (click)="filterByRegion()" value="{{region}}">{{region}}</mat-option>
         </mat-select>
-      
+      </div>
+      <div class="list">  
         <ul class="list-group" >
           <li 
               *ngFor="let countr of country$ | async"

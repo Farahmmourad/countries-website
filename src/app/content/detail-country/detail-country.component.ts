@@ -18,6 +18,7 @@ export class DetailCountryComponent implements OnInit {
   private sub1: any;
   countryn! : Country;
   country :Country[] = [];
+  selected: string='';
 
   constructor(private route : ActivatedRoute,private countriesservice : CountriesService,private service : AuthService) { }
 
