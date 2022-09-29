@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShellModule } from './shell/shell.module';
@@ -13,7 +12,7 @@ import { countriesReducer } from './state/content/content.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ContentEffects } from './state/content/content.effects';
 import { AppHttpInterceptorService } from './validation/app-http-interceptor.service';
-
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TranslocoRootModule } from './transloco-root.module';
 
 
@@ -32,7 +31,8 @@ import { TranslocoRootModule } from './transloco-root.module';
     BrowserAnimationsModule,
     StoreModule.forRoot({ countryState : countriesReducer}),
     EffectsModule.forRoot([ContentEffects]),
-    TranslocoRootModule
+    TranslocoRootModule,
+    StoreDevtoolsModule
   ],
   providers: [
     {

@@ -8,6 +8,7 @@
     "region" : "Region",
     "subregion" : "Subregion",
     "Area" : "Area",
-    "bordercountries" : "Border Countries"
+    "bordercountries" : "Border Countries",
+    "info" : "Information"
 
 }

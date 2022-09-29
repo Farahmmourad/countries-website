@@ -4,9 +4,13 @@
     <form [formGroup]="groupSignup">
         <p class="userinfo" >{{trans('validation.username')}}</p>
         <input type="text" class="intext" formControlName="Username">
+       
         <p class="userinfo">{{trans('validation.password')}}</p>
         <input type="password" class="intext" formControlName="Password">
     </form>
+
+    
+
     <button (click)="validate()" class="login-button">Login</button>
 </div>
 </ng-container>
